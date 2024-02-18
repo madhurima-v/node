@@ -5,25 +5,24 @@
 import express from 'express'
 const app = express()
 app.get('/',function(req,res){
-    res.write('<h1>homepage loaded</h1>')
-    res.send()
+    res.sendFile('C:\\Users\\Admin\\Documents\\New project\\views\\index.html')
 })
 
 app.get('/about',function(req,res){
-    res.write('<h1><a href="http://localhost:5000/resume">aboutpage loaded</a></h1>')
-    res.send()
+    res.sendFile('C:\\Users\\Admin\\Documents\\New project\\views\\about.html')
 })
 
 app.get('/resume',function(req,res){
-    res.write('<h1>resumepage loaded</h1>')
-    res.send()
+    res.sendFile('C:\\Users\\Admin\\Documents\\New project\\views\\resume.html')
 })
 
 app.get('/services',function(req,res){
-    res.write('<h1>servicespage loaded</h1>')
-    res.send()
+    res.sendFile('C:\\Users\\Admin\\Documents\\New project\\views\\services.html')
 })
 
+app.get('/contact',function(req,res){
+    res.sendFile('C:\\Users\\Admin\\Documents\\New project\\views\\contact.html')
+})
 
 app.listen(5000, function(req,res){
     console.log("server started at port number 5000")
