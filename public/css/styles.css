@@ -1,9 +1,40 @@
-h1{
-    font-size: 40px;
-    color: blueviolet;
+* {
+    background-color: gray;
 }
 
-a{
-    color: red;
+hr {
+    border-color: black;
+}
+
+
+h1 {
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+}
+
+p {
     font-size: 20px;
+}
+
+header {
+    text-align: right;
+}
+
+header a {
+    color: black;
+    font-size: 20px;
+    padding: 10px 10px 0px;
+    text-decoration: none;
+}
+
+
+.page {
+    text-align: center;
+    margin-top: 5%;
+}
+
+input{
+    width: 200px;
+    height: 20px;
+    outline: none;
 }
