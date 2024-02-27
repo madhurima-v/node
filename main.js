@@ -3,8 +3,11 @@
 
 
 import express from 'express'
+import nodemailer from 'nodemailer'
+import 'dotenv/config'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
 
 
 const app = express()
@@ -12,6 +15,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 app.use(express.static(__dirname+'\\public'))
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.email,
+      pass: process.env.password
+    }
+  });
+  
+  var mailOptions = {
+    from: 'madhurima.v@somaiya.edu',
+    to: 'darsh10@somaiya.edu',
+    subject: 'Darsh',
+    text: 'GET LOST'
+  };
 
 app.get('/',function(req,res){
     res.sendFile(__dirname+'\\views\\index.html')
@@ -31,6 +49,17 @@ app.get('/services',function(req,res){
 
 app.get('/contact',function(req,res){
     res.sendFile(__dirname+'\\views\\contact.html')
+})
+
+app.post('/contact',function(req,res){
+    console.log('hello');
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 })
 
 app.listen(5000, function(req,res){
