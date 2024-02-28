@@ -30,13 +30,7 @@ var transporter = nodemailer.createTransport({
     }
   });
   
-  var mailOptions = {
-    from: 'madhurima.v@somaiya.edu',
-    to: 'darsh10@somaiya.edu',
-    subject: 'Darsh',
-    text: 'GET LOST'
-  };
-
+ 
 app.get('/',function(req,res){
     res.sendFile(__dirname+'\\views\\index.html')
 })
@@ -57,17 +51,25 @@ app.get('/contact',function(req,res){
     res.sendFile(__dirname+'\\views\\contact.html')
 })
 
+
 app.post('/contact',function(req,res){
     console.log('hello');
+
+    var mailOptions = {
+      from: 'madhurima.v@somaiya.edu',
+      to: 'darsh10@somaiya.edu',
+      subject: 'Successful Register',
+      text: 'Hello, Thank you for registering ' + req.body.fname + ' ' + req.body.lname
+    };
+
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
+          res.sendFile(__dirname+'\\views\\thankyou.html');
         }
       });
-
-      console.log(req.body.email)
 })
 
 app.listen(5000, function(req,res){
